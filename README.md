@@ -27,23 +27,23 @@ The MEAN stack was used to build Mini Arka and was deployed on Heroku for live f
 
 ### Key Folders In File Structure:
 ```
-├── Arka_Challenge
-│   ├── app_api
-|   |   ├── controllers
-│   │   │   ├── (API to access db)
-│   │   ├── models
-│   │   │   ├── (schemes)
-|   |   ├── routes
-│   │   │   ├── (routes from webapp to db)
-│   ├── app_server
-|   |   ├── controllers
-│   │   ├── routes
-│   │   │   ├── (routes from views to webapp)
-|   |   ├── views
-│   │   │   ├── (jade templates of views)
-│   |   ├── public
-│   │   │   ├── angular
-│   │   │   |   ├── MiniArka.js (angular controller)
+  Arka_Challenge
+    ├── app_api
+    |   ├── controllers
+    |   │   ├── (API to access db)
+    |   ├── models
+    |   │   ├── (schemes)
+    |   ├── routes
+    |   │   ├── (routes from webapp to db)
+    ├── app_server
+    |   ├── controllers
+    │   ├── routes
+    │   │   ├── (routes from views to webapp)
+    |   ├── views
+    │   │   ├── (jade templates of views)
+    ├── public
+    │   ├── angular
+    │   │   ├── MiniArka.js (angular controller)
 ```
 
 ### How To Run:
