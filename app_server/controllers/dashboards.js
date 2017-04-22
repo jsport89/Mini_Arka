@@ -1,3 +1,8 @@
+/*
+ * /app_server/controllers/dashboards.js - This file contains
+ * implementations of controllers that have to do with interacting between
+ * the views and the app_server.
+ */
 /* To make requests to mongodb */
 var request = require('request');
 
@@ -70,22 +75,17 @@ module.exports.newOrder = function(req, res){
    tax: Math.random(),
    createdAt: orderCreatedAt,
    status: "New Order",
-   mfgName: "Assign Name" /* Ask what this is */
+   mfgName: "Assign Name"
   };
+
   /* meta data for db use */
   requestOptions = {
     url : apiOptions.server + path,
     method : "POST",
     json : postdata
   };
-  console.log("*****POSTDATA in app_server controller:");
-  console.log(postdata);
-  console.log("*******URL:: " + requestOptions.url);
 
-
-  /* Error check if req from user has unfilled fields */
-
-  /* send to db api */
+  /* Send to DB API */
   request(
     requestOptions,
     function(err, response, body) {
@@ -93,8 +93,7 @@ module.exports.newOrder = function(req, res){
         res.redirect('/');
       }
       else {
-/* fix this later */
-        console.log("ERRRRR " + JSON.stringify(err));
+        console.log(JSON.stringify(err));
         _showError(req, res, response.statusCode);
       }
    }
@@ -104,9 +103,7 @@ module.exports.newOrder = function(req, res){
 /* POST - Update order status */
 module.exports.updateOrder = function(req, res) {
   var requestOptions, path, orderID;
-  console.log("*********Inside app_server updateOrderStatus");
-  console.log("Req.body: ");
-  console.log(req.body);
+
   path = "/api/update_order/";
   orderID = req.params.order_id;
   postdata = {
@@ -114,23 +111,28 @@ module.exports.updateOrder = function(req, res) {
     manufacturer : req.body.manufacturer
   };
 
+  /* meta data for db use */
   requestOptions = {
     url: apiOptions.server + path + orderID,
     method : "PUT",
     json : postdata
   };
 
+  /* Send to DB API */
   request(
      requestOptions,
      function(err, response, body) {
+
+        /* For Debugging */
         console.log("Response status code: ");
         console.log(response.statusCode);
+
         if (response.statusCode === 200) {
            console.log("*******About to redirect..")
            res.redirect('/dashboard/admin');
         }
         else {
-           console.log("ERRRR " + JSON.stringify(err));
+           console.log(JSON.stringify(err));
            _showError(req, res, response.statusCode);
         }
      }

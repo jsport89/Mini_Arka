@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-/* Dashboard pages */
+/* GETS or POSTS on Dashboard pages */
 router.get('/dashboard/user', controlDashboards.displayUserDashboard);
 router.get('/dashboard/admin', controlDashboards.displayAdminDashboard);
 router.post('/dashboard/user', controlDashboards.newOrder);

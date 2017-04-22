@@ -1,3 +1,7 @@
+/*
+ * /app_api/controllers/orders.js - This file contains all the API implementations
+ * for how to interact with the database.
+ */
 var mongoose = require('mongoose');
 var Order = mongoose.model('Order');
 var Address = mongoose.model('Address');
@@ -7,11 +11,8 @@ var sendJSONresponse = function(res, status, content) {
   res.json(content);
 };
 
-/* Create and add order */
+/* POST Create and add order */
 module.exports.createOrder = function(req, res) {
-   console.log("****About to add the following to MONGODB****");
-   console.log("shippingAdd:");
-   console.log(req.body.shippingAddress.street);
    console.log(req.body);
    Order.create({
      userid: req.body.userid,
@@ -46,18 +47,22 @@ module.exports.createOrder = function(req, res) {
    });
 };
 
-/* GET Orders */
 /* GET list of locations */
 module.exports.getOrders = function(req, res) {
-/*
-  res.status(200);
-  res.json({"status" : "success"});
-*/
-  console.log("***********Inside getOrders.");
-  console.log('Getting Orders...');
   Order
     .find()
     .exec(function(err, orders) {
+      if (!orders) {
+        sendJSONresponse(res, 404, {
+           "message": "orders not found"
+        });
+        return;
+      } else if (err) {
+        console.log(err);
+        sendJSONresponse(res, 404, err);
+        return;
+      }
+      console.log(orders);
       sendJSONresponse(res, 200, orders);
     });
 };
@@ -65,9 +70,6 @@ module.exports.getOrders = function(req, res) {
 /* PUT update order's status */
 module.exports.updateOrder = function(req, res) {
   var orderID = req.params.order_id;
-
-  console.log("***********Inside app_api updateOrder:");
-  console.log("Order_ID: " + orderID);
 
   Order
     .findById(orderID)
@@ -82,9 +84,6 @@ module.exports.updateOrder = function(req, res) {
           sendJSONresponse(res, 400, err);
           return;
         }
-        console.log("**********In update order exec");
-        console.log("Order retrieved: ")
-        console.log(order);
 
         statusToSet = req.body.status;
         manufacturerToSet = req.body.manufacturer;
@@ -97,9 +96,9 @@ module.exports.updateOrder = function(req, res) {
 
         order.save(function(err, order) {
           if (err) {
+            console.log(err);
             sendJSONresponse(res, 404, err);
           } else {
-            console.log("**********Updated order entry");
             sendJSONresponse(res, 200, order);
           }
         });

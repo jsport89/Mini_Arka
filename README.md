@@ -23,7 +23,28 @@ Mini Arka is a webapp intended to emulate a subset of Arka's business to busines
 <br /> &nbsp;&nbsp;&nbsp;
 ● Styling so your UI’s aren’t complete eyesores
 
-The MEAN stack was used to build Mini Arka.   
+The MEAN stack was used to build Mini Arka and was deployed on Heroku for live functional testing.
+
+### Key Folders In File Structure:
+```
+├── Arka_Challenge
+│   ├── app_api
+|   |   ├── controllers
+│   │   │   ├── (API to access db)
+│   │   ├── models
+│   │   │   ├── (schemes)
+|   |   ├── routes
+│   │   │   ├── (routes from webapp to db)
+│   ├── app_server
+|   |   ├── controllers
+│   │   ├── routes
+│   │   │   ├── (routes from views to webapp)
+|   |   ├── views
+│   │   │   ├── (jade templates of views)
+│   |   ├── public
+│   │   │   ├── angular
+│   │   │   |   ├── MiniArka.js (angular controller)
+```
 
 ### How To Run:
 Install dependencies:
@@ -42,6 +63,7 @@ NODE_ENV=production nodemon
 ```
 
 ### TODO:
+- Require fields in User Form
 - Implement session ID's with user authentication
 - Use GULP for testing
 - Sorting of orders
