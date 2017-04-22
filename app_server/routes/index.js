@@ -11,4 +11,5 @@ router.get('/', function(req, res, next) {
 router.get('/dashboard/user', controlDashboards.displayUserDashboard);
 router.get('/dashboard/admin', controlDashboards.displayAdminDashboard);
 router.post('/dashboard/user', controlDashboards.newOrder);
+router.post('/dashboard/admin/update_order/:order_id', controlDashboards.updateOrder);
 module.exports = router;

@@ -50,7 +50,7 @@ module.exports.newOrder = function(req, res){
   var requestOptions, path, locationid, postdata;
   var date = new Date();
   var orderCreatedAt = date.toISOString();
-  locationid = req.params.locationid;
+
   path = "/api/create_order";
   postdata = {
     userid: guid(),
@@ -99,4 +99,41 @@ module.exports.newOrder = function(req, res){
       }
    }
  );
+};
+
+/* POST - Update order status */
+module.exports.updateOrder = function(req, res) {
+  var requestOptions, path, orderID;
+  console.log("*********Inside app_server updateOrderStatus");
+  console.log("Req.body: ");
+  console.log(req.body);
+  path = "/api/update_order/";
+  orderID = req.params.order_id;
+  postdata = {
+    status : req.body.status,
+    manufacturer : req.body.manufacturer
+  };
+
+  requestOptions = {
+    url: apiOptions.server + path + orderID,
+    method : "PUT",
+    json : postdata
+  };
+
+  request(
+     requestOptions,
+     function(err, response, body) {
+        console.log("Response status code: ");
+        console.log(response.statusCode);
+        if (response.statusCode === 200) {
+           console.log("*******About to redirect..")
+           res.redirect('/dashboard/admin');
+        }
+        else {
+           console.log("ERRRR " + JSON.stringify(err));
+           _showError(req, res, response.statusCode);
+        }
+     }
+ )
+
 };

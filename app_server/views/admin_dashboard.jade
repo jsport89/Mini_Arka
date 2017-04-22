@@ -9,24 +9,22 @@ block content
       .col-xs-12.list-group-item(ng-repeat="order in data.orders")
         //- .error {{ message }}
         h4
-          {{ order.userid }} Quantity: {{ order.quantity}}
+          {{ order._id }} Shipping Address:
           {{ order.shippingAddress[0].street |json }}
           {{ order.shippingAddress[0].city |json }}
           {{ order.shippingAddress[0].state |json }}
-          form.form-inline(action="/update_order", method="put" , role="form")
+          form.form-inline(action="{{'/dashboard/admin/update_order/' + order._id }}", method="post", role="form")
             .form-group
               label.col-xs-10.col-sm-2.control-label(for="status") Status:
               .col-xs-12.col-sm-10
                 {{ order.status }}
                 br
-                select#rating.form-control.input-sm(name="rates")
+                select#rating.form-control.input-sm(name="status")
                  option Select
                  option New Order
                  option Order Processed
                  option Order Delivered
-            button.btn.btn-default Update
-          br
-          form.form-inline(action="/update_order", method="put", role="form")
+            br
             .form-group
               label.col-xs-10.col-sm-2.control-label(for="manufacturer") Manufacturer:
               .col-xs-12.col-sm-10
