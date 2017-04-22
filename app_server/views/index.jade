@@ -3,7 +3,7 @@ extends landing_layout
 block content
   h1 Mini Arka
   h2 Sign in
-  form.form-horizontal(action="#{url}", method="post", role="form")
+  form.form-horizontal(action="/", role="form")
     - if (error == "val")
       .alert.alert-danger(role="alert") All fields required, please try again
     .form-inline

@@ -1,6 +1,10 @@
 var mongoose = require( 'mongoose' );
 
 var dbURI = 'mongodb://localhost/Loc8r';
+if (process.env.NODE_ENV === 'production') {
+    //dbURI = process.env.MONGOLAB_URI;
+  dbURI = "mongodb://arka_challenge:arkajules422@ds151028.mlab.com:51028/heroku_j2dbj5mb";
+}
 mongoose.connect(dbURI);
 
 /* Check for successful connection through mongoose*/
