@@ -70,7 +70,7 @@ module.exports.newOrder = function(req, res){
    tax: Math.random(),
    createdAt: orderCreatedAt,
    status: "New Order",
-   mfgName: "Assign Manufacturer Name" /* Ask what this is */
+   mfgName: "Assign Name" /* Ask what this is */
   };
   /* meta data for db use */
   requestOptions = {

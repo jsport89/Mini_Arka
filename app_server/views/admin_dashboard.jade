@@ -2,29 +2,40 @@ extends landing_layout
 
 block content
   h1(align='center') Admin Dashboard
-  body(ng-controller='orderListControl')
+  body(align='left', ng-controller='orderListControl')
     .row.list-group
-      .col-xs-12.list-group-item(ng-repeat="order in data.orders")
+      .col-xs-12.pull-left.list-group-item(ng-repeat="order in data.orders")
         //- .error {{ message }}
         h4
-          p Quantity:
-          {{ order.quantity }}
-          p Shipping Address:
-          {{ order.shippingAddress[0].street |json }}
-          {{ order.shippingAddress[0].city |json }}
-          {{ order.shippingAddress[0].state |json }}
-          {{ order.shippingAddress[0].zip |json }}
-          {{ order.shippingAddress[0].country |json }}
-          p Shipping Information:
-          {{ order.unitPrice }}
-          {{ order.subTotal }}
-          {{ order.shippingService }}
-          {{ order.shippingPrice }}
-          {{ order.total }}
-          {{ order.tax }}
-          {{ order.createdAt }}
-
-
+          p(align="left")
+            b Quantity:&nbsp
+            {{ order.quantity }}
+            br
+            br
+            b Shipping Address:
+            br
+            t Street:&nbsp {{ order.shippingAddress[0].street |json }}
+              &nbsp City: &nbsp {{ order.shippingAddress[0].city |json }}
+              &nbsp State:&nbsp {{ order.shippingAddress[0].state |json }}
+              &nbsp Zip:&nbsp {{ order.shippingAddress[0].zip |json }}
+              &nbsp Country:&nbsp {{ order.shippingAddress[0].country |json }}
+            br
+            br
+            b Shipping Information:
+            br
+            t Shipping Service: &nbsp {{ order.shippingService }}
+              &nbsp Shipping Price: ${{ order.shippingPrice }}
+              &nbsp Unit Price: $ {{ order.unitPrice }}
+            br
+            br
+            b Order Total:
+            br
+            t Subtotal: $ {{ order.subTotal }}
+              &nbsp tax: ${{ order.tax }}
+              &nbsp total: ${{ order.total }}
+            br
+            br
+            b Order Date: &nbsp {{ order.createdAt }}
           form.form-inline(action="{{'/dashboard/admin/update_order/' + order._id }}", method="post", role="form")
             .form-group
               label.col-xs-10.col-sm-2.control-label(for="status") Status:
