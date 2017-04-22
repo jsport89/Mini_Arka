@@ -8,7 +8,7 @@ https://immense-hamlet-42746.herokuapp.com
 
 ### About:
 Mini Arka is a webapp intended to emulate a subset of Arka's business to business software platform. The most basic features of the webapp have been incorporated and are as follows:
-
+<br />
 ● A UI with an order form for customers
 ● A UI with 2 admin features
   ○ Feature 1: Assign a manufacturer name to that order
