@@ -1,0 +1,23 @@
+extends landing_layout
+
+block content
+  h1 Mini Arka
+  h2 Sign in
+  form.form-horizontal(action="#{url}", method="post", role="form")
+    - if (error == "val")
+      .alert.alert-danger(role="alert") All fields required, please try again
+    .form-inline
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="username") Username:
+        .col-xs-12.col-sm-10
+          input#username.form-control(name="username")
+      br
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="password") Password:
+        .col-xs-12.col-sm-10
+          input#name.form-control(name="password")
+      br
+      br
+      button.btn.btn-default.center Sign in

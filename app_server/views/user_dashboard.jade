@@ -1,0 +1,59 @@
+extends landing_layout
+
+block content
+  h1 User Dashboard
+  h2 Order Form
+  br
+  form.form-horizontal(action="/dashboard/user", method="post", role="form")
+    - if (error == "val")
+      .alert.alert-danger(role="alert") All fields required, please try again
+    .form-horizontal(align='left')
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="quantity") Quantity
+        .col-xs-12.col-sm-10
+          input#username.form-control(name="quantity")
+      br
+      p Shipping Address:
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="street") Street
+        .col-xs-12.col-sm-10
+          input#name.form-control(name="street")
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="city") City
+        .col-xs-12.col-sm-10
+          input#name.form-control(name="city")
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="state") State
+        .col-xs-12.col-sm-10
+          input#name.form-control(name="state")
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="zip") Zip
+        .col-xs-12.col-sm-10
+          input#name.form-control(name="zip")
+      br
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="country") Country
+        .col-xs-12.col-sm-10
+          input#name.form-control(name="country")
+      br
+      p Shipping Options:
+      .form-group
+        label.col-xs-10.col-sm-2.control-label(for="rates") Rates
+        .col-xs-12.col-sm-2
+          select#rating.form-control.input-sm(name="rates")
+            option Standard
+            option Express Ground
+            option Expedited
+            option 2-day
+            option Overnight
+      br
+      button.btn.btn-default Place Order
+
+  //-
+    Order form information
+    - quantity
+    - address (street, city, state, zip, country)

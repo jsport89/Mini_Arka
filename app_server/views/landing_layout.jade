@@ -1,0 +1,28 @@
+doctype html
+html(ng-app='MiniArkaApp')
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= Arka
+    link(rel='stylesheet', href='/public/bootstrap/css/cerulean.css')
+    link(rel='stylesheet', href='/public/stylesheets/style.css')
+  body
+    .navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header
+          a.navbar-brand(href='/') Mini Arka
+        #navbar-main.navbar-collapse.collapse
+          ul.nav.navbar-nav
+            li
+              //- Add about link to left side of bar
+              a(href='/dashboard/user') Users
+          ul.nav.navbar-nav
+            li
+              //- Add about link to left side of bar
+              a(href='/dashboard/admin') Admins
+    .container(align='center')
+      block content
+    script(src='/node_modules/angular/angular.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular-route.js')
+    script(src='/public/angular/MiniArka.js')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    script(src='/public/bootstrap/js/bootstrap.min.js')
