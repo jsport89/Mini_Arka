@@ -2,17 +2,29 @@ extends landing_layout
 
 block content
   h1(align='center') Admin Dashboard
-  input(ng-model="myInput")
-  h3 Hello {{ myInput }}
   body(ng-controller='orderListControl')
     .row.list-group
       .col-xs-12.list-group-item(ng-repeat="order in data.orders")
         //- .error {{ message }}
         h4
-          {{ order._id }} Shipping Address:
+          p Quantity:
+          {{ order.quantity }}
+          p Shipping Address:
           {{ order.shippingAddress[0].street |json }}
           {{ order.shippingAddress[0].city |json }}
           {{ order.shippingAddress[0].state |json }}
+          {{ order.shippingAddress[0].zip |json }}
+          {{ order.shippingAddress[0].country |json }}
+          p Shipping Information:
+          {{ order.unitPrice }}
+          {{ order.subTotal }}
+          {{ order.shippingService }}
+          {{ order.shippingPrice }}
+          {{ order.total }}
+          {{ order.tax }}
+          {{ order.createdAt }}
+
+
           form.form-inline(action="{{'/dashboard/admin/update_order/' + order._id }}", method="post", role="form")
             .form-group
               label.col-xs-10.col-sm-2.control-label(for="status") Status:
@@ -24,7 +36,6 @@ block content
                  option New Order
                  option Order Processed
                  option Order Delivered
-            br
             .form-group
               label.col-xs-10.col-sm-2.control-label(for="manufacturer") Manufacturer:
               .col-xs-12.col-sm-10
