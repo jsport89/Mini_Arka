@@ -23,7 +23,7 @@ Mini Arka is a webapp intended to emulate a subset of Arka's business to busines
 <br /> &nbsp;&nbsp;&nbsp;
 ● Styling so your UI’s aren’t complete eyesores
 
-The MEAN stack was used to build Mini Arka and was deployed on Heroku for live functional testing.
+The MEAN stack was used to build Mini Arka and was deployed on Heroku for live functional testing with Postman.
 
 ### Key Folders In File Structure:
 ```
